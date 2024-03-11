@@ -33,8 +33,8 @@ Developed by: Kayyuru Tharani
 Registeration Number : 212221040080
 */
 ```
-**Android Manifest File:**
-
+## Android Manifest File:
+```
     <?xml version="1.0" encoding="utf-8"?>
     <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
@@ -61,9 +61,9 @@ Registeration Number : 212221040080
     </application>
 
     </manifest>
-
-**Activity_xml File:**
-    
+```
+### Activity_xml File:
+  ```  
     <?xml version="1.0" encoding="utf-8"?>
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -133,9 +133,9 @@ Registeration Number : 212221040080
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/number" />
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-**MainActivity.java File:**
-
+```
+## MainActivity.java File:
+```
     package com.example.smsintent;
 
     import androidx.appcompat.app.AppCompatActivity;
@@ -191,8 +191,10 @@ Registeration Number : 212221040080
         }
     }
     }
-
+```
 ## OUTPUT:
+
+
      ![Screenshot (122)](https://github.com/KayyuruTharani/sendsms/assets/142209319/115617b5-8d49-416d-ae44-884a105dedab)
 
      ![Screenshot (120)](https://github.com/KayyuruTharani/sendsms/assets/142209319/cccafe9e-90a7-4957-81f6-fef575ef3a75)

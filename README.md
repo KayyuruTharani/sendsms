@@ -192,15 +192,16 @@ Registeration Number : 212221040080
     }
     }
 ```
+
+
 ## OUTPUT:
 
+![Screenshot (122)](https://github.com/KayyuruTharani/sendsms/assets/142209319/39379122-99c8-44fa-a357-6f7eeac813fb)
 
-     ![Screenshot (122)](https://github.com/KayyuruTharani/sendsms/assets/142209319/115617b5-8d49-416d-ae44-884a105dedab)
+![Screenshot (120)](https://github.com/KayyuruTharani/sendsms/assets/142209319/8a2de081-9cf2-4ac9-b51e-2312afd7ba85)
 
-     ![Screenshot (120)](https://github.com/KayyuruTharani/sendsms/assets/142209319/cccafe9e-90a7-4957-81f6-fef575ef3a75)
 
-     ![Screenshot (121)](https://github.com/KayyuruTharani/sendsms/assets/142209319/caa0ecf9-95b0-4302-9dd1-08895d30e015)
-
+![Screenshot (121)](https://github.com/KayyuruTharani/sendsms/assets/142209319/e5c23816-f7ec-4d0d-acfa-6f10e54a60f3)
 
 
 ## RESULT:

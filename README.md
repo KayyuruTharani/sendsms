@@ -36,18 +36,19 @@ Registeration Number : 212221040080
 ## Android Manifest File:
 ```
     <?xml version="1.0" encoding="utf-8"?>
-    <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools">
-    <uses-permission android:name="android.permission.SEND_SMS" />
-    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.example.sendingsms">
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Smsintent"
+        android:theme="@style/Theme.AppCompat"
         tools:targetApi="31">
         <activity
             android:name=".MainActivity"
@@ -60,148 +61,67 @@ Registeration Number : 212221040080
         </activity>
     </application>
 
-    </manifest>
+</manifest>
 ```
 ### Activity_xml File:
   ```  
-    <?xml version="1.0" encoding="utf-8"?>
-    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+   <?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <EditText
-        android:id="@+id/number"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="192dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text=""
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <EditText
-        android:id="@+id/text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="88dp"
-        android:layout_marginTop="140dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text=""
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/number" />
-
     <Button
-        android:id="@+id/send"
+        android:id="@+id/smsButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="56dp"
-        android:backgroundTint="#4CAF50"
-        android:text="SEND"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text" />
+        android:backgroundTint="@color/design_default_color_secondary"
+        android:text="send sms"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"/>
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginBottom="23dp"
-        android:text="Enter Number:"
-        android:textColor="#F44336"
-        android:textSize="36dp"
-        app:layout_constraintBottom_toTopOf="@+id/number"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="46dp"
-        android:text="Enter Message:"
-        android:textColor="#673AB7"
-        android:textSize="36dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/number" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+</RelativeLayout>
 ```
 ## MainActivity.java File:
 ```
-    package com.example.smsintent;
+    package com.example.sendingsms;
+import androidx.appcompat.app.AppCompatActivity;
 
-    import androidx.appcompat.app.AppCompatActivity;
+import android.content.Intent;
+import android.net.Uri;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 
-    import android.Manifest;
-    import android.annotation.SuppressLint;
-    import android.content.pm.PackageManager;
-    import android.os.Build;
-    import android.os.Bundle;
-    import android.telephony.SmsManager;
-    import android.view.View;
-    import android.widget.Button;
-    import android.widget.EditText;
-    import android.widget.Toast;
-  
-    public class MainActivity extends AppCompatActivity {
-    private EditText number,message;
-    private Button send;
-    @SuppressLint("MissingInflatedId")
+public class MainActivity extends AppCompatActivity {
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        number = findViewById(R.id.number);
-        message = findViewById(R.id.text);
-        send = findViewById(R.id.send);
-
-        send.setOnClickListener(new View.OnClickListener() {
+        Button mbutton=(Button) findViewById(R.id.smsButton);
+        mbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (Build.VERSION.SDK_INT>=Build.VERSION_CODES.M){
-                    if (checkSelfPermission(Manifest.permission.SEND_SMS) == PackageManager.PERMISSION_GRANTED){
-                        sendSMS();
-                    }else {
-                        requestPermissions(new String[]{Manifest.permission.SEND_SMS},1);
-                    }
-                }
+                Intent intent =new Intent(Intent.ACTION_VIEW, Uri.fromParts("sms","9360247533",null));
+                intent.putExtra("sms_body","SMS using Intent");
+                startActivity(intent);
             }
         });
     }
-    private void sendSMS(){
-        String phoneNo = number.getText().toString().trim();
-        String SMS = message.getText().toString().trim();
-
-        try{
-            SmsManager smsManager = SmsManager.getDefault();
-            smsManager.sendTextMessage(phoneNo,null,SMS,null,null);
-            Toast.makeText(this,"Message is sent",Toast.LENGTH_SHORT).show();
-        } catch (Exception e){
-            e.printStackTrace();
-            Toast.makeText(this,"Failed to send message",Toast.LENGTH_SHORT).show();
-        }
-    }
-    }
+}
 ```
 
 
 ## OUTPUT:
 
-![Screenshot (122)](https://github.com/KayyuruTharani/sendsms/assets/142209319/39379122-99c8-44fa-a357-6f7eeac813fb)
-
-![Screenshot (120)](https://github.com/KayyuruTharani/sendsms/assets/142209319/8a2de081-9cf2-4ac9-b51e-2312afd7ba85)
+![Screenshot (146)](https://github.com/KayyuruTharani/sendsms/assets/142209319/1410c069-d680-40eb-9229-c1030532c75c)
 
 
-![Screenshot (121)](https://github.com/KayyuruTharani/sendsms/assets/142209319/e5c23816-f7ec-4d0d-acfa-6f10e54a60f3)
+![Screenshot (147)](https://github.com/KayyuruTharani/sendsms/assets/142209319/907cfbac-7433-4181-81a5-95521776c646)
+
 
 
 ## RESULT:
